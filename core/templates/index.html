@@ -71,10 +71,10 @@
                 <a class="nav-link" href="service.html">Serviços</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="cadastrar.html"><i class="fa fa-user" aria-hidden="true"></i> Cadastrar</a>
+                <a class="nav-link" href="{% url 'cadastrar' %}"><i class="fa fa-user" aria-hidden="true"></i> Cadastrar</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
+                <a class="nav-link" href="{% url 'login' %}"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
               </li>
               <form class="form-inline">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
@@ -104,7 +104,7 @@
                       Estamos aqui para te apoiar no que for preciso para que tenha maior controle sobre as suas finanças. Conseguir controlar gastos e fazer uma poupança é um grande desafio para a maioria.
                     </p>
                     <div class="btn-box">
-                      <a href="cadastrar.html" class="btn1">
+                      <a href="{% url 'cadastrar' %}" class="btn1">
                         Começe aqui
                       </a>
                     </div>
