@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+
 
 
 def index(request):
@@ -26,5 +28,15 @@ def cadastrar(request):
             return redirect('login')
     return render(request, 'cadastrar.html')
 
-def login(request):
+def access_login(request):
+    if request.method == "POST":
+        username = request.POST["email"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('user_area')
     return render(request, 'login.html')
+
+def user_area(request):
+    return render(request, 'user_area.html')
