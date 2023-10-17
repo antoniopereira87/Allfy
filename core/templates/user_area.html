@@ -193,9 +193,9 @@ Bootstrap 5 Dashboard Admin Template
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="setting.html">
+                                <a class="dropdown-item" href="{% url 'cadastrar_receita' id=profile.id %}">
                                     <i class="bi-gear me-2"></i>
-                                    Settings
+                                    Cadastrar Receita
                                 </a>
                             </li>
 
@@ -207,7 +207,7 @@ Bootstrap 5 Dashboard Admin Template
                             </li>
 
                             <li class="border-top mt-3 pt-2 mx-4">
-                                <a class="dropdown-item ms-0 me-0" href="#">
+                                <a class="dropdown-item ms-0 me-0" href="{% url 'logout' %}">
                                     <i class="bi-box-arrow-left me-2"></i>
                                     Logout
                                 </a>

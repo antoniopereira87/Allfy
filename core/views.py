@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 
@@ -35,8 +37,21 @@ def access_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('user_area')
+            return redirect('user_area', id=user.profile.id)
     return render(request, 'login.html')
 
-def user_area(request):
-    return render(request, 'user_area.html')
+def logout_view(request):
+    logout(request)
+    return redirect('index')
+
+@login_required
+def user_area(request, id):
+    profile = Profile.objects.filter(id=id).first()
+    context = {
+        'profile':profile
+    }
+    return render(request, 'user_area.html', context)
+
+@login_required
+def cadastrar_receita(request, id):
+    return render(request, 'cadastrar_receita.html')
