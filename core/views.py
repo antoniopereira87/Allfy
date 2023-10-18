@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile, Income
 
 
 
@@ -48,10 +48,24 @@ def logout_view(request):
 def user_area(request, id):
     profile = Profile.objects.filter(id=id).first()
     context = {
-        'profile':profile
+        'profile':profile,
+        'incomes':profile.income.all()
     }
     return render(request, 'user_area.html', context)
 
 @login_required
 def cadastrar_receita(request, id):
-    return render(request, 'cadastrar_receita.html')
+    if request.method == "POST":
+        valor = request.POST["valor"]
+        valor = float(valor)
+        profile = Profile.objects.filter(id=id).first()
+        descricao = request.POST["descricao"]
+        income = Income.objects.create(valor=valor, descricao=descricao, profile=profile)
+        income.valor = valor
+        income.descricao = descricao
+        income.save()
+        return redirect('user_area', id=id)
+    context = {
+        'id':id
+    }
+    return render(request, 'cadastrar_receita.html', context)
