@@ -13,7 +13,7 @@ class Profile(models.Model):
         verbose_name_plural = "Perfis"
         
 class Income(models.Model):
-    valor = models.FloatField()   
+    valor = models.FloatField()  
     descricao = models.CharField(max_length=200)
     profile = models.ForeignKey(Profile, related_name= 'income', on_delete= models.CASCADE )
     class Meta:
