@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Income, Profile
+from .models import Income, Profile, Expense
 
 
 @admin.register(Income)
@@ -17,3 +17,16 @@ class ProfileAdmin(admin.ModelAdmin):
         'user',
     )
     search_fields = ('user',)
+
+@admin.register(Expense)
+class ExpenseAdmin(admin.ModelAdmin):
+    list_display = (
+        'valor',
+        'categoria',
+        'descricao',
+    )
+    search_fields = (
+        'valor',
+        'categoria',
+        'descricao',
+    )
