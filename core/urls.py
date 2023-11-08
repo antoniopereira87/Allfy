@@ -10,4 +10,6 @@ urlpatterns = [
     path('user_area/<int:id>', views.user_area, name= 'user_area'),
     path('logout', views.logout_view, name= 'logout'),
     path('<int:id>/cadastrar_receita', views.cadastrar_receita, name= 'cadastrar_receita'),
+    path('<int:id>/cadastrar_despesa', views.cadastrar_despesa, name= 'cadastrar_despesa'),
+    path('buscar', views.buscar, name= 'buscar'),
 ]

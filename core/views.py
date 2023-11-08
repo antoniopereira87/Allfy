@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Income
+from .models import Profile, Income, Expense
+from .choices import CATEGORIA
 
 
 
@@ -57,6 +58,7 @@ def user_area(request, id):
 def cadastrar_receita(request, id):
     if request.method == "POST":
         valor = request.POST["valor"]
+        valor = valor.replace(',','.')
         valor = float(valor)
         profile = Profile.objects.filter(id=id).first()
         descricao = request.POST["descricao"]
@@ -69,3 +71,58 @@ def cadastrar_receita(request, id):
         'id':id
     }
     return render(request, 'cadastrar_receita.html', context)
+
+
+@login_required
+def cadastrar_despesa(request, id):
+    if request.method == "POST":
+        valor = request.POST["valor"]
+        valor = valor.replace(',', '.')
+        valor = float(valor)
+        profile = Profile.objects.filter(id=id).first()
+        categoria = request.POST["categoria"]
+        descricao = request.POST["descricao"]
+        expense = Expense.objects.create(valor=valor, categoria=categoria, descriao=descricao, profile=profile)
+        expense.save()
+        return redirect('user_area', id=id)
+    context = {
+        'id':id,    
+        'categoria':CATEGORIA
+    }
+    return render(request, 'cadastrar_despesa.html', context)
+
+@login_required
+def buscar(request):
+    profile = request.user.profile
+    id = profile.id
+    
+    tipo = request.GET.get('tipo', None)
+    categoria = request.GET.get('categoria', None)
+    valor = request.GET.get('valor', None)
+    data_query = {'id':id,}
+    if categoria:
+        data_query['categoria'] = categoria
+    
+    if valor:
+        data_query['valor'] = valor
+
+    receitas = None
+    despesas = None
+
+    if tipo == 'receitas':
+        receitas = Income.objects.filter(**data_query)
+
+    elif tipo == 'despesas':
+        despesas = Expense.objects.filter(**data_query)
+
+    else:
+        receitas = Income.objects.filter(**data_query)
+        despesas = Expense.objects.filter(**data_query)
+    
+    context = {
+        'id':id,
+        'receitas':receitas,
+        'despesas':despesas,
+        'categoria':CATEGORIA
+    }
+    return render(request, 'buscar.html', context)

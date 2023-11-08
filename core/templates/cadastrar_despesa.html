@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
+
+  <title> Allfy </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="static/images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Allfy
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
+              </li>
+              <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Crie sua conta
+                    </h1>
+                    <p>
+                      <div class="bg-white shadow rounded-lg md:mt-0 w-full sm:max-w-screen-sm xl:p-0">
+                        <div class="p-6 sm:p-8 lg:p-16 space-y-8">
+                          <form class="mt-8 space-y-6" action="{% url 'cadastrar_receita' id=id %}" method="POST">
+                            {% csrf_token %}
+                            <div>
+                              <label for="id_first_name" class="text-sm font-medium text-gray-900 block mb-2">Valor</label>
+                              <input
+                                id="id_first_name"
+                                type="text"
+                                name="valor"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                placeholder="Valor em R$"
+                                required
+                              >
+                            </div>
+                            <div>
+                              <label for="id_last_name" class="text-sm font-medium text-gray-900 block mb-2">Categoria</label>
+                              <select
+                                id="id_categoria"
+                                name="id_categoria"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                required
+                              > 
+                              <option
+                              value=""
+                              disabled
+                              selected
+                              >
+                                Selecione uma categoria
+                              </option>
+                              {% for choice in categoria %}
+                                <option
+                                value="{{choice.0}}"
+                                >
+                                  {{choice.1}}
+                                </option>
+                              {% endfor %}
+                              </select>
+                            </div>
+                            <div>
+                              <label for="id_email" class="text-sm font-medium text-gray-900 block mb-2">Descrição</label>
+                              <input
+                                id="id_description"
+                                type="text"
+                                name="descricao"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                placeholder="Detalhes da receita"
+                                required
+                              >
+                            </div>
+                            {% comment %} <div>
+                              <label for="id_password1" class="text-sm font-medium text-gray-900 block mb-2">Senha</label>
+                              <input
+                                id="id_password1"
+                                type="password"
+                                name="password1"
+                                placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                required
+                              >
+                            </div>
+                            <div>
+                              <label for="id_password2" class="text-sm font-medium text-gray-900 block mb-2">Confirmação da Senha</label>
+                              <input
+                                id="id_password2"
+                                type="password"
+                                name="password2"
+                                placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                required
+                              >
+                            </div> {% endcomment %}
+                            {% comment %} <div class="flex items-start">
+                              <div class="flex items-center h-5">
+                                <input
+                                  id="remember"
+                                  type="checkbox"
+                                  name="remember"
+                                  aria-describedby="remember"
+                                  class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded"
+                                >
+                              </div> {% endcomment %}
+                              {% comment %} <div class="text-sm ml-3">
+                                <label for="remember" class="font-medium text-gray-900">Eu aceito os <a href="#" class="text-teal-500 hover:underline">Termos e Condições</a></label>
+                              </div>
+                            </div> {% endcomment %}
+                            <button type="submit" class="text-black bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-base px-5 py-3 w-full sm:w-auto text-center">Enviar</button>
+                            {% comment %} <div class="text-sm font-medium text-gray-500">
+                              Você já tem uma conta? <a href="{% url 'login' %}" class="text-teal-500 hover:underline">Login</a>
+                            </div> {% endcomment %}
+                          </form>
+                        </div>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static 'images/slider-img.png' %}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        <ol class="carousel-indicators">
+          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#customCarousel1" data-slide-to="1"></li>
+          <li data-target="#customCarousel1" data-slide-to="2"></li>
+        </ol>
+      </div>
+
+    </section>
+    <!-- end slider section -->
+  </div>
