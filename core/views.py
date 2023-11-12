@@ -74,6 +74,13 @@ def cadastrar_receita(request, id):
 
 
 @login_required
+def apagar_receita(request, id):
+    income = Income.objects.get(id=id)
+    income.delete()
+    return redirect('buscar')
+
+
+@login_required
 def cadastrar_despesa(request, id):
     if request.method == "POST":
         valor = request.POST["valor"]
@@ -82,7 +89,7 @@ def cadastrar_despesa(request, id):
         profile = Profile.objects.filter(id=id).first()
         categoria = request.POST["categoria"]
         descricao = request.POST["descricao"]
-        expense = Expense.objects.create(valor=valor, categoria=categoria, descriao=descricao, profile=profile)
+        expense = Expense.objects.create(valor=valor, categoria=categoria, descricao=descricao, profile=profile)
         expense.save()
         return redirect('user_area', id=id)
     context = {
@@ -90,6 +97,14 @@ def cadastrar_despesa(request, id):
         'categoria':CATEGORIA
     }
     return render(request, 'cadastrar_despesa.html', context)
+
+
+@login_required
+def apagar_despesa(request, id):
+    expense = Expense.objects.get(id=id)
+    expense.delete()
+    return redirect('buscar')
+
 
 @login_required
 def buscar(request):
@@ -99,7 +114,7 @@ def buscar(request):
     tipo = request.GET.get('tipo', None)
     categoria = request.GET.get('categoria', None)
     valor = request.GET.get('valor', None)
-    data_query = {'id':id,}
+    data_query = {'profile__id':id,}
     if categoria:
         data_query['categoria'] = categoria
     

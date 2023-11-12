@@ -8,14 +8,14 @@
 <h2>Allfy</h2>
 <br>
   <div class="ls-box-filter">
-    <form action="" class="ls-form ls-form-inline">
+    <form class="ls-form ls-form-inline " action="{% url 'buscar' %}" method="GET">
       <label class="ls-label col-md-8 col-sm-8">
         <b class="ls-label-text">Tipo</b>
         <div class="ls-custom-select">
           <select name="tipo" class="ls-select">
-            <option>Todos</option>
-            <option>Receitas</option>
-            <option>Despesas</option>
+            <option value="" >Todos</option>
+            <option value="receitas" >Receitas</option>
+            <option value="despesas" >Despesas</option>
           </select>
         </div>
       </label>
@@ -31,6 +31,42 @@
         <input type="submit" value="Buscar" class="ls-btn" title="Buscar">
       </div>
     </form>
+  </div>
+  <div>
+    {% for receita in receitas %}
+    <div>
+      <p>
+        {{receita.valor}}
+      </p>
+      <p>
+        {{receita.descricao}}
+      </p>
+      <form action="{% url 'apagar_receita' id=receita.id %}">
+        <button type= 'submit'>
+          Deletar
+        </button>
+      </form>
+    </div>
+    {% endfor %}
+    {% for despesa in despesas %}
+    <div>
+      <p>
+        {{despesa.valor}}
+      </p>
+      <p>
+        {{despesa.descricao}}
+      </p>
+      <p>
+        {{despesa.categoria}}
+      </p>
+      <form action="{% url 'apagar_despesa' id=despesa.id %}">
+        <button type= 'submit'>
+          Deletar
+        </button>
+      </form>
+    </div>
+    {% endfor %}
+
   </div>
 
 </body>
