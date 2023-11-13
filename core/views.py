@@ -50,7 +50,8 @@ def user_area(request, id):
     profile = Profile.objects.filter(id=id).first()
     context = {
         'profile':profile,
-        'incomes':profile.income.all()
+        'incomes':profile.income.all(),
+        'expenses':profile.expense.all()
     }
     return render(request, 'user_area.html', context)
 

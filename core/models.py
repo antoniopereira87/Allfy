@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from core.choices import CATEGORIA
 
-# Aplicar o uso do método construtor nas classes 
 
 class Profile(models.Model):
     foto = models.ImageField(null=True)
