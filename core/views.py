@@ -48,10 +48,23 @@ def logout_view(request):
 @login_required
 def user_area(request, id):
     profile = Profile.objects.filter(id=id).first()
+    incomes = profile.income.all()
+    expenses = profile.expense.all()
+    result_income = 0
+    result_expense = 0
+    for income in incomes:
+        result_income += income.valor
+
+    for expense in expenses:
+        result_expense += expense.valor
+
+    balance = result_income - result_expense
+
     context = {
         'profile':profile,
-        'incomes':profile.income.all(),
-        'expenses':profile.expense.all()
+        'incomes':incomes,
+        'expenses':expenses,
+        'balance':balance
     }
     return render(request, 'user_area.html', context)
 

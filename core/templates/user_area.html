@@ -54,129 +54,21 @@ Bootstrap 5 Dashboard Admin Template
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
+            {% comment %} <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
                 <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
-            </form>
+            </form> {% endcomment %}
 
             <div class="navbar-nav me-lg-2">
                 <div class="nav-item text-nowrap d-flex align-items-center">
-                    <div class="dropdown ps-3">
-                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarLightDropdownMenuLink">
-                            <i class="bi-bell"></i>
-                            <span class="position-absolute start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
-                                <span class="visually-hidden">New alerts</span>
-                            </span>
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-lg-end notifications-block-wrap bg-white shadow" aria-labelledby="navbarLightDropdownMenuLink">
-                            <small>Notifications</small>
-
-                            <li class="notifications-block border-bottom pb-2 mb-2">
-                                <a class="dropdown-item d-flex  align-items-center" href="#">
-                                    <div class="notifications-icon-wrap bg-success">
-                                        <i class="notifications-icon bi-check-circle-fill"></i>
-                                    </div>
-
-                                    <div>
-                                        <span>Your account has been created successfuly.</span>
-
-                                        <p>12 days ago</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="notifications-block border-bottom pb-2 mb-2">
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="notifications-icon-wrap bg-info">
-                                        <i class="notifications-icon bi-folder"></i>
-                                    </div>
-
-                                    <div>
-                                        <span>Please check. We have sent a Daily report.</span>
-
-                                        <p>10 days ago</p>
-                                    </div>
-                                </a>
-                            </li>
-
-                            <li class="notifications-block">
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="notifications-icon-wrap bg-danger">
-                                        <i class="notifications-icon bi-question-circle"></i>
-                                    </div>
-
-                                    <div>
-                                        <span>Account verification failed.</span>
-
-                                        <p>1 hour ago</p>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="dropdown ps-1">
-                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi-three-dots-vertical"></i>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-social bg-white shadow">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-4">
-                                        <a class="dropdown-item text-center" href="#">
-                                            <img src="{% static 'images/social/search.png' %}" class="profile-image img-fluid" alt="">
-                                            <span class="d-block">Google</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-4">
-                                        <a class="dropdown-item text-center" href="#">
-                                            <img src="images/social/spotify.png" class="profile-image img-fluid" alt="">
-                                            <span class="d-block">Spotify</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-4">
-                                        <a class="dropdown-item text-center" href="#">
-                                            <img src="images/social/telegram.png" class="profile-image img-fluid" alt="">
-                                            <span class="d-block">Telegram</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-4">
-                                        <a class="dropdown-item text-center" href="#">
-                                            <img src="images/social/snapchat.png" class="profile-image img-fluid" alt="">
-                                            <span class="d-block">Snapchat</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-4">
-                                        <a class="dropdown-item text-center" href="#">
-                                            <img src="images/social/tiktok.png" class="profile-image img-fluid" alt="">
-                                            <span class="d-block">Tiktok</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-4 col-4">
-                                        <a class="dropdown-item text-center" href="#">
-                                            <img src="images/social/youtube.png" class="profile-image img-fluid" alt="">
-                                            <span class="d-block">Youtube</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid" alt="">
+                            <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid" alt="">
                         </a>
                         <ul class="dropdown-menu bg-white shadow">
                             <li>
                                 <div class="dropdown-menu-profile-thumb d-flex">
-                                    <img src="images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid me-3" alt="">
+                                    <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="">
 
                                     <div class="d-flex flex-column">
                                         <small>Usuário</small>
@@ -263,13 +155,6 @@ Bootstrap 5 Dashboard Admin Template
                                     Help Center
                                 </a>
                             </li>
-
-                            <li class="nav-item featured-box mt-lg-5 mt-4 mb-4">
-                                <img src="images/credit-card.png" class="img-fluid" alt="">
-
-                                <a class="btn custom-btn" href="#">Upgrade</a>
-                            </li>
-
                             <li class="nav-item border-top mt-auto pt-2">
                                 <a class="nav-link" href="{% url 'logout' %}">
                                     <i class="bi-box-arrow-left me-2"></i>
@@ -284,7 +169,7 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="title-group mb-3">
                         <h1 class="h2 mb-0">Overview</h1>
 
-                        <small class="text-muted">Hello Usuário, welcome back!</small>
+                        <small class="text-muted">Olá {{ profile.user.first_name }}, Seja bem vindo de volta!</small>
                     </div>
 
                     <div class="row my-4">
@@ -292,40 +177,27 @@ Bootstrap 5 Dashboard Admin Template
                             <div class="custom-block custom-block-balance">
                                 <small>Seu Resultado</small>
 
-                                <h2 class="mt-2 mb-3">$254,800</h2>
+                                <h2 class="mt-2 mb-3">R$:{{ balance|floatformat:2 }}</h2>
 
                                 <div class="custom-block-numbers d-flex align-items-center">
-                                    <span>****</span>
-                                    <span>****</span>
-                                    <span>****</span>
-                                    <p>2560</p>
-                                </div>
-
-                                <div class="d-flex">
-                                    <div>
-                                        <small>Valid Date</small>
-                                        <p>12/2028</p>
-                                    </div>
-
-                                    <div class="ms-auto">
-                                        <small>Card Holder</small>
-                                        <p>Thomas</p>
+                                    <div class="">
+                                        <small>Usuário</small>
+                                        <p>{{ profile.user.first_name }}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="custom-block bg-white">
-                                <h5 class="mb-4">History</h5>
+                            {% comment %} <div class="custom-block bg-white">
+                                <h5 class="mb-4">Despesas por Categoria</h5>
 
                                 <div id="pie-chart"></div>
-                            </div>
+                            </div> {% endcomment %}
 
-                            <div class="custom-block bg-white">
+                            {% comment %} <div class="custom-block bg-white">
                                 <div id="chart"></div>
-                            </div>
-
+                            </div> {% endcomment %}
                             <div class="custom-block custom-block-exchange">
-                                <h5 class="mb-4">Exchange Rate</h5>
+                                <h5 class="mb-4">Despesas por Categoria</h5>
 
                                 <div class="d-flex align-items-center border-bottom pb-3 mb-3">
                                     <div class="d-flex align-items-center">
@@ -541,28 +413,6 @@ Bootstrap 5 Dashboard Admin Template
                                     <a class="btn custom-btn" href="wallet.html">
                                         View all transations
                                         <i class="bi-arrow-up-right-circle-fill ms-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="custom-block primary-bg">
-                                <h5 class="text-white mb-4">Send Money</h5>
-
-                                <a href="#">
-                                    <img src="images/profile/young-woman-with-round-glasses-yellow-sweater.jpg" class="profile-image img-fluid" alt="">
-                                </a>
-
-                                <a href="#">
-                                    <img src="images/profile/young-beautiful-woman-pink-warm-sweater.jpg" class="profile-image img-fluid" alt="">
-                                </a>
-
-                                <a href="#">
-                                    <img src="images/profile/senior-man-white-sweater-eyeglasses.jpg" class="profile-image img-fluid" alt="">
-                                </a>
-
-                                <div class="profile-rounded">
-                                    <a href="#">
-                                        <i class="profile-rounded-icon bi-plus"></i>
                                     </a>
                                 </div>
                             </div>
