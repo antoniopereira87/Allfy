@@ -52,11 +52,35 @@ def user_area(request, id):
     expenses = profile.expense.all()
     result_income = 0
     result_expense = 0
+    categories_result = {
+        'Alimentação':0.0,
+        'Transporte':0.0,
+        'Moradia':0.0,
+        'Vestuário':0.0,
+        'Assinaturas':0.0,
+        'Saúde':0.0,
+        'Lazer':0.0,
+    }
     for income in incomes:
         result_income += income.valor
 
     for expense in expenses:
         result_expense += expense.valor
+        categoria = expense.categoria
+        if categoria == 'alimentacao':
+            categories_result ['Alimentação'] += expense.valor
+        elif categoria == 'transporte':
+            categories_result ['Transporte'] += expense.valor
+        elif categoria == 'moradia':
+            categories_result ['Moradia'] += expense.valor
+        elif categoria == 'vestuario':
+            categories_result ['Vestuário'] += expense.valor
+        elif categoria == 'assinaturas':
+            categories_result ['Assinaturas'] += expense.valor
+        elif categoria == 'saude':
+            categories_result ['Saúde'] += expense.valor
+        elif categoria == 'lazer':
+            categories_result ['Lazer'] += expense.valor
 
     balance = result_income - result_expense
 
@@ -64,7 +88,8 @@ def user_area(request, id):
         'profile':profile,
         'incomes':incomes,
         'expenses':expenses,
-        'balance':balance
+        'balance':balance,
+        'categories_result':categories_result
     }
     return render(request, 'user_area.html', context)
 
