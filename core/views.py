@@ -111,6 +111,25 @@ def cadastrar_receita(request, id):
     }
     return render(request, 'cadastrar_receita.html', context)
 
+@login_required
+def alterar_receita(request, id):
+    income = Income.objects.filter(id=id).first()
+    if request.method == "POST":
+        valor = request.POST["valor"]
+        valor = valor.replace(',','.')
+        valor = float(valor)
+        descricao = request.POST["descricao"]
+        income.valor = valor
+        income.descricao = descricao
+        income.save()
+        return redirect('user_area', id=income.profile.id)
+    context ={
+        'income':income,
+        'id':income.profile.id
+    }
+    return render(request, 'cadastrar_receita.html', context)
+
+
 
 @login_required
 def apagar_receita(request, id):
@@ -137,6 +156,26 @@ def cadastrar_despesa(request, id):
     }
     return render(request, 'cadastrar_despesa.html', context)
 
+@login_required
+def alterar_despesa(request, id):
+    expense = Expense.objects.filter(id=id).first()
+    if request.method == "POST":
+        valor = request.POST["valor"]
+        valor = valor.replace(',', '.')
+        valor = float(valor)
+        categoria = request.POST["categoria"]
+        descricao = request.POST["descricao"]
+        expense.valor = valor
+        expense.descricao = descricao
+        expense.categoria = categoria
+        expense.save()
+        return redirect('user_area', id=expense.profile.id)
+    context ={
+        'categoria':CATEGORIA,
+        'expense':expense,
+        'id':expense.profile.id
+    }
+    return render(request, 'cadastrar_despesa.html', context)
 
 @login_required
 def apagar_despesa(request, id):

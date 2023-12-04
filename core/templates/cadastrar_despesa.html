@@ -62,7 +62,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  ">
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href={% url 'user_area' id=id %}>Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
@@ -93,7 +93,11 @@
                     <p>
                       <div class="bg-white shadow rounded-lg md:mt-0 w-full sm:max-w-screen-sm xl:p-0">
                         <div class="p-6 sm:p-8 lg:p-16 space-y-8">
-                          <form class="mt-8 space-y-6" action="{% url 'cadastrar_despesa' id=id %}" method="POST">
+                          <form class="mt-8 space-y-6" 
+                          {% if expense %} action="{% url 'alterar_despesa' id=expense.id %}" 
+                          {% else %} action="{% url 'cadastrar_despesa' id=id %}"
+                          {% endif %}
+                          method="POST">
                             {% csrf_token %}
                             <div>
                               <label for="id_first_name" class="text-sm font-medium text-gray-900 block mb-2">Valor</label>
@@ -104,6 +108,8 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                 placeholder="Valor em R$"
                                 required
+                                {% if expense %} value = '{{ expense.valor }}'
+                                {% endif %}
                               >
                             </div>
                             <div>
@@ -124,6 +130,8 @@
                               {% for choice in categoria %}
                                 <option
                                 value="{{choice.0}}"
+                                {% if expense.categoria == choice.0 %} selected
+                                {% endif %}
                                 >
                                   {{choice.1}}
                                 </option>
@@ -139,6 +147,8 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                 placeholder="Detalhes da receita"
                                 required
+                                {% if expense %} value = '{{ expense.descricao }}'
+                                {% endif %}
                               >
                             </div>
                             {% comment %} <div>

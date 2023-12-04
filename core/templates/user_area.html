@@ -24,6 +24,8 @@
         <link href="{% static 'css/apexcharts.css' %}" rel="stylesheet">
 
         <link href="{% static 'css/tooplate-mini-finance.css' %}" rel="stylesheet">
+
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
 <!--
 
 Tooplate 2135 Mini Finance
@@ -44,7 +46,7 @@ Bootstrap 5 Dashboard Admin Template
     <body>
         <header class="navbar sticky-top flex-md-nowrap">
             <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="">
                     <i class="bi-box"></i>
                     Allfy
                 </a>
@@ -71,8 +73,8 @@ Bootstrap 5 Dashboard Admin Template
                                     <img src="{% static 'images/medium-shot-happy-man-smiling.jpg' %}" class="profile-image img-fluid me-3" alt="">
 
                                     <div class="d-flex flex-column">
-                                        <small>Usuário</small>
-                                        <a href="#">usuario@site.com</a>
+                                        <small>{{ profile.user.first_name }}</small>
+                                        <a href="#">{{ profile.user.email }}</a>
                                     </div>
                                 </div>
                             </li>
@@ -86,20 +88,20 @@ Bootstrap 5 Dashboard Admin Template
 
                             <li>
                                 <a class="dropdown-item" href="{% url 'cadastrar_receita' id=profile.id %}">
-                                    <i class="bi-gear me-2"></i>
+                                    <i class="bi-wallet me-2"></i>
                                     Cadastrar Receita
                                 </a>
                             </li>
 
                             <li>
                                 <a class="dropdown-item" href="{% url 'cadastrar_despesa' id=profile.id %}">
-                                    <i class="bi-gear me-2"></i>
+                                    <i class="bi-wallet me-2"></i>
                                     Cadastrar Despesa
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{% url 'buscar' %}">
-                                    <i class="bi-gear me-2"></i>
+                                    <i class="fa fa-search me-2" aria-hidden="true"></i>
                                     Buscar
                                 </a>
                             </li>
@@ -122,37 +124,30 @@ Bootstrap 5 Dashboard Admin Template
                     <div class="position-sticky py-4 px-3 sidebar-sticky">
                         <ul class="nav flex-column h-100">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="user_area.html">
+                                <a class="nav-link active" aria-current="page" href={% url 'user_area' id=profile.id %}>
                                     <i class="bi-house-fill me-2"></i>
-                                    Overview
+                                    Home
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="wallet.html">
+                                <a class="nav-link" href="{% url 'cadastrar_receita' id=profile.id %}">
                                     <i class="bi-wallet me-2"></i>
-                                    My Wallet
+                                    Cadastrar Receitas
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="profile.html">
-                                    <i class="bi-person me-2"></i>
-                                    Profile
+                                <a class="nav-link" href="{% url 'cadastrar_despesa' id=profile.id %}">
+                                    <i class="bi-wallet me-2"></i>
+                                    Cadastrar Despesas
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="setting.html">
-                                    <i class="bi-gear me-2"></i>
-                                    Settings
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="help-center.html">
-                                    <i class="bi-question-circle me-2"></i>
-                                    Help Center
+                                <a class="nav-link" href="{% url 'buscar' %}">
+                                    <i class="fa fa-search me-2" aria-hidden="true"></i>
+                                    Buscar
                                 </a>
                             </li>
                             <li class="nav-item border-top mt-auto pt-2">
@@ -167,7 +162,7 @@ Bootstrap 5 Dashboard Admin Template
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
                     <div class="title-group mb-3">
-                        <h1 class="h2 mb-0">Overview</h1>
+                        <h1 class="h2 mb-0">Resumo Financeiro</h1>
 
                         <small class="text-muted">Olá {{ profile.user.first_name }}, Seja bem vindo de volta!</small>
                     </div>
@@ -220,58 +215,16 @@ Bootstrap 5 Dashboard Admin Template
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Name:</strong>
 
-                                    <span>Thomas Edison</span>
+                                    <span>{{ profile.user.first_name }}</span>
                                 </p>
 
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Email:</strong>
                                     
                                     <a href="#">
-                                        thomas@site.com
+                                        {{ profile.user.email }}
                                     </a>
                                 </p>
-
-                                <p class="d-flex flex-wrap mb-0">
-                                    <strong>Phone:</strong>
-
-                                    <a href="#">
-                                        (60) 12 345 6789
-                                    </a>
-                                </p>
-                            </div>
-
-                            <div class="custom-block custom-block-bottom d-flex flex-wrap">
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-wallet"></i>
-
-                                        <small>Top up</small>
-                                    </a>
-                                </div>
-
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-upc-scan"></i>
-
-                                        <small>Scan & Pay</small>
-                                    </a>
-                                </div>
-
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-send"></i>
-
-                                        <small>Send</small>
-                                    </a>
-                                </div>
-
-                                <div class="custom-block-bottom-item">
-                                    <a href="#" class="d-flex flex-column">
-                                        <i class="custom-block-icon bi-arrow-down"></i>
-
-                                        <small>Request</small>
-                                    </a>
-                                </div>
                             </div>
 
                             <div class="custom-block custom-block-transations">
@@ -313,8 +266,8 @@ Bootstrap 5 Dashboard Admin Template
                                 </div>
                                 {% endfor %}
                                 <div class="border-top pt-4 mt-4 text-center">
-                                    <a class="btn custom-btn" href="wallet.html">
-                                        View all transations
+                                    <a class="btn custom-btn" href="{% url 'buscar' %}">
+                                        Ver todas as transações
                                         <i class="bi-arrow-up-right-circle-fill ms-2"></i>
                                     </a>
                                 </div>
